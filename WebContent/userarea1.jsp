@@ -96,19 +96,21 @@
 
             <h4>Gender:</h4>
 
+            <div class="input-group">
             <input  type="radio" name="gender" id="radio_0" value=0 <% if (user.getGender() == 0){%> checked <% } %>/><label
-                for="radio_0"> Other</label><br>
+                for="radio_0"> Other </label>
             <input  type="radio" name="gender" id="radio_1" value=1 <% if (user.getGender() == 1){%> checked <% } %>/><label
-                for="radio_1"> Male</label><br>
+                for="radio_1"> Male </label>
             <input  type="radio" name="gender" id="radio_2" value=2 <% if (user.getGender() == 2){%> checked <% } %>/><label
-                for="radio_2"> Female</label><br>
+                for="radio_2"> Female </label>
+            </div>
 
         </div>
 
         <input class="btn btn-default btn-lg" name="submit" type="submit" value="Guardar">
     </form>
-    <div class="col-xs-12">
-        <h1>Who are you following?</h1>
+    <div class="col-xs-12 col-lg-6">
+        <h2>Who are you following?</h2>
 
         <%
             if (request.getAttribute("following") != null) {
@@ -118,15 +120,13 @@
                     while (result.next()) {
 
         %>
-        <div class="col-xs-2">
+        <div class="col-xs-6">
             <div class="panel panel-default">
                 <%--<div class="panel-heading"><%=result.getString("title") %></div>--%>
                 <div class="panel-body">
-                    <strong><%=result.getString("user") %></strong>  since <%=result.getString("since") %>:
+                  <%--  <strong><%=result.getString("user") %></strong>  since <%=result.getString("since") %>:--%>
 
 
-                   <%-- <button type="button" title="Retweet" class="btn btn-success" > <i class="fa fa-retweet" aria-hidden="true"></i></button>
-                    <button type="button" title="Edit" class="btn btn-success" > <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>--%>
                     <button type="button" title="Unfollow" class="btn btn-danger" > <i class="fa fa-trash" aria-hidden="true"></i></button>
 
                 </div>
@@ -143,11 +143,53 @@
         }
         else {
         %>
-        No users following.
+            No users following.
         <%
             }
         %>
     </div>
+
+  <%--  <div class="col-xs-12 col-lg-6">
+        <h2>Who can you follow?</h2>
+
+        <%
+            if (request.getAttribute("following") != null) {
+                ResultSet result2 = (ResultSet) request.getAttribute("following");
+
+                try {
+                    while (result2.next()) {
+
+        %>
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                &lt;%&ndash;<div class="panel-heading"><%=result.getString("title") %></div>&ndash;%&gt;
+                <div class="panel-body">
+                    <strong><%=result2.getString("user") %></strong>  since <%=result2.getString("since") %>:
+
+
+                    &lt;%&ndash; <button type="button" title="Retweet" class="btn btn-success" > <i class="fa fa-retweet" aria-hidden="true"></i></button>
+                     <button type="button" title="Edit" class="btn btn-success" > <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>&ndash;%&gt;
+                    <button type="button" title="Unfollow" class="btn btn-success" > <i class="fa fa-plus" aria-hidden="true"></i></button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <%
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        else {
+        %>
+            No users following.
+        <%
+            }
+        %>
+    </div>--%>
 
 </div>
 
