@@ -1,0 +1,18 @@
+_____________________README_____________________________
+
+Seminari CSS EW
+Ignasi Larroca 158633
+Marc Mateu 146756
+
+El primer que hem fet ha sigut crear un fitxer main.css que serà l'unic que es carregara
+en el projecte. Els altres fixers css (un per cada vista/controlador) s'importen
+a travès de main.css.
+
+Utilizarem el framework bootstrap (i ja el tenim correctament importat al main, tant el css
+com el js), bàsicament perque es una ajuda molt bona a l'hora de distribuir l'espai utilitzant
+classes com 'col-lg-6', sent a mes a mes responsive..
+
+Els fitxers css de la majoria de vistes no están acabats perque encara no tenim
+definides aquestes vistes. Els anirem desenvolupant a mesura que avançem el projecte,
+però la idea es que siguin independents els uns dels altres i si hi han coses comunes
+que estiguin a common.css
