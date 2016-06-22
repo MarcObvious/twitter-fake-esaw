@@ -63,7 +63,6 @@ public class newtweetcontroller extends HttpServlet {
 
 		}
 
-
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 		if (dispatcher != null)
 			dispatcher.forward(request, response);

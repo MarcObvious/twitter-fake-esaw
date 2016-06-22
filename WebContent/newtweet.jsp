@@ -46,8 +46,8 @@
 
 		Privacity:
 
-		<input  type="radio" name="private" id="radio_0" value=0 <% if (newtweet.getPrivacity() == 0){%> checked <% } %> /> Public<br>
-		<input  type="radio" name="private" id="radio_1" value=1 <% if (newtweet.getPrivacity() == 1){%> checked <% } %> /> Private<br>
+		<label for="radio_0">Public </label><input type="radio" name="private" id="radio_0" value=0 <% if (newtweet.getPrivacity() == 0){%> checked <% } %> /> Public<br>
+		<label for="radio_1">Private </label><input type="radio" name="private" id="radio_1" value=1 <% if (newtweet.getPrivacity() == 1){%> checked <% } %> /> Private<br>
 
 		<input name="sumbit" type="submit" value="Enviar" class="btn btn-default">
 	</form>
