@@ -28,7 +28,6 @@ public class Content extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		System.out.print("Hem entrat a content controller!\n");
 		String content = (String)request.getParameter("content");
      	RequestDispatcher dispatcher = 
 					request.getRequestDispatcher(content);

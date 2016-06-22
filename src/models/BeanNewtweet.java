@@ -2,10 +2,37 @@ package models;
 
 public class BeanNewtweet {
 
-	private String title = "";
+    private String title = "";
     private String tweet = "";
     private int privacity = 0;
+    private int idtweet = 0;
+    private int iduser = 0;
     private String user = "";
+    private String datetweet = "";
+
+    public int getIdtweet() {
+        return idtweet;
+    }
+
+    public void setIdtweet(int idtweet) {
+        this.idtweet = idtweet;
+    }
+
+    public int getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(int iduser) {
+        this.iduser = iduser;
+    }
+
+    public String getDatetweet() {
+        return datetweet;
+    }
+
+    public void setDatetweet(String datetweet) {
+        this.datetweet = datetweet;
+    }
 
     public int getPrivacity() {
         return privacity;
@@ -15,13 +42,13 @@ public class BeanNewtweet {
         this.privacity = privacity;
     }
 
-	public String getTweet() {
-		return tweet;
-	}
+    public String getTweet() {
+        return tweet;
+    }
 
-	public void setTweet(String tweet) {
-		this.tweet = tweet;
-	}
+    public void setTweet(String tweet) {
+        this.tweet = tweet;
+    }
 
     public String getTitle() {
         return title;

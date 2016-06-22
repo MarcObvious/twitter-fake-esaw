@@ -106,42 +106,6 @@ public class userareacontroller extends HttpServlet {
             }
         }
 
-        String query2 = "select u.user, f.date_add as since from followings f " +
-                "inner join users u on f.id_followed=u.id " +
-                "where f.id_user=\"" + (String) session.getAttribute("user_id") + "\";";
-
-        String query3 = "select u.user, u.id as id_user from users u;";
-
-        String query5 = "select * from users;";
-
-
-        try {
-            System.out.println(query2);
-            ResultSet result = dao.executeSQL(query5);
-            request.setAttribute("following", result);
-           /* while (result.next()) {
-                System.out.println(query2);
-            }*/
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            System.out.println(query3);
-            ResultSet result2 = dao.executeSQL(query5);
-            request.setAttribute("nofollowing", result2);
-           /* while (result2.next()) {
-                System.out.println(query3);
-            }*/
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-
         request.setAttribute("user", user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/userarea1.jsp");
 		if (dispatcher != null)

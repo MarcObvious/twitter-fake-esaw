@@ -45,25 +45,60 @@ public class newtweetcontroller extends HttpServlet {
 			throws ServletException, IOException {
 
 		BeanNewtweet newtweet = new BeanNewtweet();
-		BeanUtilities.populateBean(newtweet, request);
+		RequestDispatcher dispatcher;
 
-		HttpSession session = request.getSession(false);
 
-		if ((String) session.getAttribute("user") != null && newtweet.isComplete() && dao != null) {
-			String query = "INSERT INTO " + taula +
-					" (`tweet`, `title`, `id_user`, `private`) "+
-					"VALUES (" + "\"" + newtweet.getTweet() + "\"," + "\"" + newtweet.getTitle() + "\"," + "\"" + (String) session.getAttribute("user_id") + "\"," + "\"" + newtweet.getPrivacity() + "\"" + ");";;
-			System.out.println(query);
-			try {
-				dao.executeUpdate(query);
-				System.out.println("twwet done");
-			} catch (SQLException e) {
-				e.printStackTrace();
+		String method = request.getParameter("method");
+
+		if (method != null && method.equals("edittweet")) {
+			newtweet.setIdtweet(Integer.parseInt(request.getParameter("id_tweet")));
+			newtweet.setTitle(request.getParameter("title"));
+			newtweet.setTweet(request.getParameter("tweet"));
+
+			request.setAttribute("newtweet",newtweet);
+			dispatcher = request.getRequestDispatcher("/newtweet.jsp");
+		}
+		else {
+
+			BeanUtilities.populateBean(newtweet, request);
+
+
+			HttpSession session = request.getSession(false);
+			String query = "";
+			if (newtweet.getIdtweet() == 0) {
+				query = "INSERT INTO " + taula +
+						" (`tweet`, `title`, `id_user`, `private`) "+
+						"VALUES (" +
+						"\"" + newtweet.getTweet() + "\"," +
+						"\"" + newtweet.getTitle() + "\"," +
+						"\"" + (String) session.getAttribute("user_id") + "\"," +
+						"\"" + newtweet.getPrivacity() + "\"" + ");";
 			}
+			else {
+				query = "UPDATE "+ taula +"\n" +
+						"SET tweet=\"" + newtweet.getTweet()  + "\",\n" +
+						"title=\"" + newtweet.getTitle() + "\",\n" +
+						"id_user=\"" + (String) session.getAttribute("user_id") + "\",\n" +
+						"private=\"" + newtweet.getPrivacity()  + "\"\n" +
+						"WHERE id="+  newtweet.getIdtweet() +";";
 
+			}
+			if ((String) session.getAttribute("user") != null && newtweet.isComplete() && dao != null) {
+
+				System.out.println(query);
+				try {
+					dao.executeUpdate(query);
+					System.out.println("twwet done");
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+
+			}
+			dispatcher = request.getRequestDispatcher("/index.jsp");
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+
+
 		if (dispatcher != null)
 			dispatcher.forward(request, response);
 

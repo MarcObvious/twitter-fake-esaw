@@ -50,6 +50,9 @@
 		<label for="privacity_0">Public </label><input type="radio" name="privacity" id="privacity_0" value=0 <% if (newtweet.getPrivacity() == 0){%> checked <% } %> />
 		<label for="privacity_1">Private </label><input type="radio" name="privacity" id="privacity_1" value=1 <% if (newtweet.getPrivacity() == 1){%> checked <% } %> /><br>
 
+		<input  class="form-control input-sm" name="idtweet"
+			   value="<%=newtweet.getIdtweet()%>" id="idtweet" type="hidden"/>
+
 		<input name="sumbit" type="submit" value="Enviar" class="btn btn-default">
 	</form>
 </div>

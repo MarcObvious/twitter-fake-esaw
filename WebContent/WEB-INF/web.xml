@@ -61,6 +61,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>followcontroller</display-name>
+    <servlet-name>followcontroller</servlet-name>
+    <servlet-class>controllers.followcontroller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>followcontroller</servlet-name>
+    <url-pattern>/followcontroller</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>logincontroller</display-name>
     <servlet-name>logincontroller</servlet-name>
     <servlet-class>controllers.logincontroller</servlet-class>

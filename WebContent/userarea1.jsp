@@ -18,10 +18,12 @@
                     minlength: 6
                 },
                 name: {
+                    required: true,
                     lettersonly: true,
                     minlength: 2
                 },
                 surname: {
+                    required: true,
                     lettersonly: true,
                     minlength: 2
                 },
@@ -109,7 +111,26 @@
 
         <input class="btn btn-default btn-lg" name="submit" type="submit" value="Guardar">
     </form>
-    <div class="col-xs-12 col-lg-6">
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#following').load('followcontroller', { method: "following" });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#nofollowing').load('followcontroller', { method: "nofollowing" });
+        });
+    </script>
+
+    <div id="following">
+
+    </div>
+    <div id="nofollowing">
+
+    </div>
+<%--    <div class="col-xs-12 col-lg-6">
         <h2>Who are you following?</h2>
 
         <%
@@ -122,9 +143,9 @@
         %>
         <div class="col-xs-6">
             <div class="panel panel-default">
-                <%--<div class="panel-heading"><%=result.getString("title") %></div>--%>
+                &lt;%&ndash;<div class="panel-heading"><%=result.getString("title") %></div>&ndash;%&gt;
                 <div class="panel-body">
-                  <%--  <strong><%=result.getString("user") %></strong>  since <%=result.getString("since") %>:--%>
+                  &lt;%&ndash;  <strong><%=result.getString("user") %></strong>  since <%=result.getString("since") %>:&ndash;%&gt;
 
 
                     <button type="button" title="Unfollow" class="btn btn-danger" > <i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -147,7 +168,7 @@
         <%
             }
         %>
-    </div>
+    </div>--%>
 
   <%--  <div class="col-xs-12 col-lg-6">
         <h2>Who can you follow?</h2>
