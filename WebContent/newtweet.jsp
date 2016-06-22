@@ -40,14 +40,15 @@
 <div class="col-xs-4">
 	<form class="form-group" id=newTweetForm action="" method="POST">
 
-		<input  placeholder="Tweet Title" class="form-control input-md" type="text" name="title" value="<%=newtweet.getTitle()%>" id="title"/>
+		<input  placeholder="Tweet Title" class="form-control input-md" type="text" name="title" id="title" value="<%=newtweet.getTitle()%>" />
 
 		<textarea  placeholder="Tweet" class="form-control input-md" name="tweet" id="tweet" rows="4" cols="50"><%=newtweet.getTweet()%></textarea>
 
-		Privacity:
+		<hr>
+		<h3>Privacity:</h3>
 
-		<label for="radio_0">Public </label><input type="radio" name="private" id="radio_0" value=0 <% if (newtweet.getPrivacity() == 0){%> checked <% } %> /> Public<br>
-		<label for="radio_1">Private </label><input type="radio" name="private" id="radio_1" value=1 <% if (newtweet.getPrivacity() == 1){%> checked <% } %> /> Private<br>
+		<label for="privacity_0">Public </label><input type="radio" name="privacity" id="privacity_0" value=0 <% if (newtweet.getPrivacity() == 0){%> checked <% } %> />
+		<label for="privacity_1">Private </label><input type="radio" name="privacity" id="privacity_1" value=1 <% if (newtweet.getPrivacity() == 1){%> checked <% } %> /><br>
 
 		<input name="sumbit" type="submit" value="Enviar" class="btn btn-default">
 	</form>
