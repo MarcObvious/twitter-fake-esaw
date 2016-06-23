@@ -43,21 +43,21 @@ else {
 <div class="col-xs-4">
 	<form class="form-group" id=loginForm action="" method="POST">
 
-		<label for="user"> User id </label> <input class="form-control input-md" type="text" name="user" value="<%=login.getUser() %>" id="user" />
+		<label for="user"> User id </label> <input class="input-md" type="text" name="user" value="<%=login.getUser() %>" id="user" />
 		<%
 			if ( login.getError()[0] == 1) {
 		%>
-		<span class="error"> The username doesn't exists in our DB! </span>
+		<span class="label label-danger"> The username doesn't exists in our DB! </span>
 		<%
 			}
 		%>
 
 		<label for="password"> User passwd </label>
-		<input class="form-control input-md" type="password" name="password" value="<%=login.getPassword() %>" id="password"/>
+		<input class=" input-md" type="password" name="password" value="<%=login.getPassword() %>" id="password"/>
 		<%
 			if ( login.getError()[1] == 1) {
 		%>
-		<span class="error"> The password is incorrect! </span>
+		<span class="label label-danger"> The password is incorrect! </span>
 		<%
 			}
 		%>
