@@ -24,7 +24,7 @@
             <button type="button" title="Retweet" class="btn btn-success" > <i class="fa fa-retweet" aria-hidden="true"></i></button>
 
             <%
-                if (b.getUser().equals(session.getAttribute("username"))) {
+                if (b.getUser().equals(session.getAttribute("user"))) {
             %>
 
             <button id="btne<%=b.getIdtweet()%>" type="button" title="Edit" class="btn btn-success" > <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>

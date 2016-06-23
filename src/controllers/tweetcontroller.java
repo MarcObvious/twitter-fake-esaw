@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Servlet implementation class formcontroller
+ * Servlet implementation class registercontroller
  */
 public class tweetcontroller extends HttpServlet {
 	private String taula = "tweets";

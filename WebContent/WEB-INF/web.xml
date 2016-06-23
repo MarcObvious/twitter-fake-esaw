@@ -21,13 +21,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>formcontroller</display-name>
-    <servlet-name>formcontroller</servlet-name>
-    <servlet-class>controllers.formcontroller</servlet-class>
+    <display-name>registercontroller</display-name>
+    <servlet-name>registercontroller</servlet-name>
+    <servlet-class>controllers.registercontroller</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>formcontroller</servlet-name>
-    <url-pattern>/formcontroller</url-pattern>
+    <servlet-name>registercontroller</servlet-name>
+    <url-pattern>/registercontroller</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

@@ -45,13 +45,11 @@ public class logincontroller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		BeanLogin login = new BeanLogin();
 		BeanUtilities.populateBean(login, request);
 
 		boolean err = false;
-
-
 		try {
 			String[] where = {"user", login.getUser()};
 			if (!dao.exists("users", where)) {
@@ -66,50 +64,28 @@ public class logincontroller extends HttpServlet {
 			}
 
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
 
 		if (login.isComplete() && dao != null && !err) {
 			HttpSession session = request.getSession();
-			session.setAttribute("user", login.getUser());
 
 			try {
-				ResultSet result = dao.executeSQL("select * from users where user=\"" + login.getUser()
-				+ "\" and passwd=\"" + login.getPassword() + "\";");
+				String query = "select id from users where user=\"" + login.getUser()
+						+ "\" and passwd=\"" + login.getPassword() + "\";";
+				ResultSet result = dao.executeSQL(query);
 
 
-
-				String resultHtml = "<html><head></head><body><table>" + "<thead><tr>" + "<th>id</th>" + "<th>user</th>"
-						+ "<th>mail</th>" + "<th>name</th>" + "<th>surnmae</th>" + "<th>passwd</th>" + "<th>bday</th>"
-						+ "<th>surname2</th>" + "<th>gender</th>" + "<th>description</th>" + "<th>likes</th>"
-						+ "<th>date_upd</th>" + "<th>date_add</th>" + "</tr></thead><tbody>";
 				String id = "";
-
 				while (result.next()) {
-					//dao.executeUpdate("INSERT INTO `ts1`.`sessions` (`session`, `user_id`, `login`) VALUES ('fafafa', " + result.getString("id") + ",\""+  new Date()+"\");");
-					ResultSetMetaData rsmd = result.getMetaData();
-					resultHtml += "<tr>";
 					id = result.getString("id");
 
-					for (int i = 1; rsmd.getColumnCount() >= i; i++) {
-						resultHtml += "<td>" + result.getString(i) + "</td>";
-					}
-
-					resultHtml += "</tr>";
 				}
 
-				resultHtml += "</tbody></table></body><html>";
-				request.setAttribute("username", login.getUser());
-				request.setAttribute("user_id", id);
-				request.setAttribute("date", new Date());
-				request.setAttribute("result", resultHtml);
-
-				session.setAttribute("username", login.getUser());
+				session.setAttribute("user", login.getUser());
 				session.setAttribute("user_id", id);
 				session.setAttribute("date", new Date());
-				session.setAttribute("result", resultHtml);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

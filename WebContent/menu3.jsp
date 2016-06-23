@@ -12,7 +12,7 @@
 <table>
     <tr>
         <td> <a class="menu" id="index.jsp" href=#> Home </a> </td>
-        <td> <a class="menu" id="form.jsp" href=#> Registration </a> </td>
+        <td> <a class="menu" id="register.jsp" href=#> Registration </a> </td>
         <td> <a class="menu" id="login.jsp" href=#> Login </a> </td>
     </tr>
 </table>

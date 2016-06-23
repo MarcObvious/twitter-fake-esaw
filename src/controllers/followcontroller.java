@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Servlet implementation class formcontroller
+ * Servlet implementation class registercontroller
  */
 public class followcontroller extends HttpServlet {
     private String taula = "users";

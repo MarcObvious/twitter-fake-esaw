@@ -5,18 +5,22 @@ import models.BeanUser;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Date;
+
 import utils.BeanUtilities;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import DAO.DAO;
 
 /**
- * Servlet implementation class formcontroller
+ * Servlet implementation class registercontroller
  */
-public class formcontroller extends HttpServlet {
+public class registercontroller extends HttpServlet {
 	private String taula = "users";
 	private DAO dao = null;
 
@@ -25,7 +29,7 @@ public class formcontroller extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public formcontroller() {
+	public registercontroller() {
 		super();
 		try {
 			dao = new DAO();
@@ -74,27 +78,25 @@ public class formcontroller extends HttpServlet {
 				System.out.println(sSql);
 				dao.executeUpdate(sSql);
 
-				ResultSet result = dao.readDataFromTable("users");
-				String resultHtml = "<html><head></head><body><table>" + "<thead><tr>" + "<th>id</th>" + "<th>user</th>"
-						+ "<th>mail</th>" + "<th>name</th>" + "<th>surnmae</th>" + "<th>passwd</th>" + "<th>bday</th>"
-						+ "<th>surname2</th>" + "<th>gender</th>" + "<th>description</th>" + "<th>likes</th>"
-						+ "<th>date_upd</th>" + "<th>date_add</th>" + "</tr></thead><tbody>";
+				sSql = "SELECT id, user FROM " + taula + " where mail=\"" +user.getMail()+"\" limit 1;";
+				ResultSet result = dao.executeSQL(sSql);
+
+				HttpSession session = request.getSession();
 
 				while (result.next()) {
-					ResultSetMetaData rsmd = result.getMetaData();
-					resultHtml += "<tr>";
-
-					for (int i = 1; rsmd.getColumnCount() >= i; i++) {
-						resultHtml += "<td>" + result.getString(i) + "</td>";
-					}
-
-					resultHtml += "</tr>";
+					session.setAttribute("user", result.getString("user"));
+					session.setAttribute("user_id", result.getString("id"));
+					session.setAttribute("date", new Date());
 				}
 
-				resultHtml += "</tbody></table></body><html>";
+				sSql = "INSERT INTO followings "
+						+ " (`id_user`, `id_followed`) "
+						+ "VALUES (" + "\"" + session.getAttribute("user_id") + "\"," + "\"" + session.getAttribute("user_id") + "\");";
 
-				request.setAttribute("result", resultHtml);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
+				System.out.println(sSql);
+				dao.executeUpdate(sSql);
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 				if (dispatcher != null)
 					dispatcher.forward(request, response);
 
@@ -105,7 +107,7 @@ public class formcontroller extends HttpServlet {
 
 		} else {
 			request.setAttribute("user", user);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/form.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
 			if (dispatcher != null)
 				dispatcher.forward(request, response);
 

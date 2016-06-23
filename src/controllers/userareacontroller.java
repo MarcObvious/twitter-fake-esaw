@@ -16,7 +16,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 /**
- * Servlet implementation class formcontroller
+ * Servlet implementation class registercontroller
  */
 public class userareacontroller extends HttpServlet {
 	private String taula = "users";

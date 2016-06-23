@@ -10,10 +10,10 @@ Logged in!
 %>
 
 <%
-	if (session.getAttribute("username") != null) {
+	if (session.getAttribute("user") != null) {
 %>
 <p>
-	Username: <strong><%=session.getAttribute("username")%></strong>
+	Username: <strong><%=session.getAttribute("user")%></strong>
 </p>
 <%
 	}

@@ -7,7 +7,7 @@
 	$(document).ready(function(){
 		$("#registerForm").validate({
 			submitHandler: function(form) {
-				$('#content').load('formcontroller',$("#registerForm").serialize());
+				$('#content').load('registercontroller',$("#registerForm").serialize());
 			},
 			rules: {
 				user: {
