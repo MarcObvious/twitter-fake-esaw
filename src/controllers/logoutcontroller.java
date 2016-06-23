@@ -20,19 +20,15 @@ public class logoutcontroller extends HttpServlet {
      */
     public logoutcontroller() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
 		session.invalidate();
-		
-		//System.out.println("Se ha hecho logout: "+session.toString());
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login2.jsp");
 	    if (dispatcher != null) dispatcher.forward(request, response);
 	}
@@ -41,7 +37,6 @@ public class logoutcontroller extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request,response);
 	}
 

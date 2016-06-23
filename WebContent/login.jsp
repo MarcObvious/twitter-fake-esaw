@@ -7,23 +7,23 @@
 	<script type="text/javascript" src="jquery/jquery.validate.js"></script>
 	<script>
 		$(document).ready(function(){
-					$("#loginForm").validate({
-						submitHandler: function(form) {
-							$('#content').load('logincontroller',$("#loginForm").serialize());
+				$("#loginForm").validate({
+					submitHandler: function(form) {
+						$('#content').load('logincontroller',$("#loginForm").serialize());
+					},
+					rules: {
+						user: {
+							required: true,
+							minlength: 6
 						},
-						rules: {
-							user: {
-								required: true,
-								minlength: 6
-							},
-							password: {
-								required: true,
-								minlength: 8,
-								maxlength: 20
-							}
+						password: {
+							required: true,
+							minlength: 8,
+							maxlength: 20
 						}
-					});
-				}
+					}
+				});
+			}
 		);
 	</script>
 

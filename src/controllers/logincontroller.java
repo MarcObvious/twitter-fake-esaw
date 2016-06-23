@@ -1,13 +1,9 @@
 package controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,7 +31,7 @@ public class logincontroller extends HttpServlet {
 		try {
 			dao = new DAO();
 		} catch (Exception e1) {
-			e1.printStackTrace();// http://localhost:8080/Practica3/form.jsp
+			e1.printStackTrace();
 		}
 	}
 
@@ -49,6 +45,7 @@ public class logincontroller extends HttpServlet {
 		BeanLogin login = new BeanLogin();
 		BeanUtilities.populateBean(login, request);
 
+		//Fem les comprovacions a la bbdd sobre si l'usuari i contrasenya son correctes
 		boolean err = false;
 		try {
 			String[] where = {"user", login.getUser()};
@@ -76,18 +73,16 @@ public class logincontroller extends HttpServlet {
 						+ "\" and passwd=\"" + login.getPassword() + "\";";
 				ResultSet result = dao.executeSQL(query);
 
-
-
+				//Creem la sessio segons el tipus d'usuari que es
 				while (result.next()) {
                     session.setAttribute("is_admin", result.getString("is_admin"));
                     session.setAttribute("user_id", result.getString("id"));
 				}
 
 				session.setAttribute("user", login.getUser());
-
 				session.setAttribute("date", new Date());
+
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

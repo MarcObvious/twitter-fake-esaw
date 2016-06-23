@@ -19,15 +19,14 @@ public class Content extends HttpServlet {
      */
     public Content() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
+		//Redirigeix al controlador que faci falta
 		String content = (String)request.getParameter("content");
      	RequestDispatcher dispatcher = 
 					request.getRequestDispatcher(content);
@@ -38,7 +37,6 @@ public class Content extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request,response);
 	}
 

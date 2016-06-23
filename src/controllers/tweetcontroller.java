@@ -46,9 +46,9 @@ public class tweetcontroller extends HttpServlet {
 		RequestDispatcher dispatcher;
 		HttpSession session = request.getSession(false);
 
-
 		String method = request.getParameter("method");
 
+		//Fem retweet
 		if (method != null && method.equals("retweet")) {
 			try {
 
@@ -82,7 +82,7 @@ public class tweetcontroller extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("/index.jsp");
 
 		}
-
+		//Editem tweet
 		else if (method != null && method.equals("edittweet")) {
 			String query = "SELECT t.id as id_tweet, t.title, t.tweet, t.private\n" +
 					"FROM "+ taula + " t\n" +
@@ -106,9 +106,6 @@ public class tweetcontroller extends HttpServlet {
 		else {
 
 			BeanUtilities.populateBean(tweet, request);
-
-
-
 			String query = "";
 			if (tweet.getIdtweet() == 0) {
 				query = "INSERT INTO " + taula +
@@ -130,7 +127,6 @@ public class tweetcontroller extends HttpServlet {
 			}
 			if ((String) session.getAttribute("user") != null && tweet.isComplete() && dao != null) {
 
-				System.out.println(query);
 				try {
 					dao.executeUpdate(query);
 					System.out.println("twwet done");
@@ -142,11 +138,8 @@ public class tweetcontroller extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("/index.jsp");
 		}
 
-
-
 		if (dispatcher != null)
 			dispatcher.forward(request, response);
-
 
 	}
 
@@ -156,8 +149,6 @@ public class tweetcontroller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.print("post fet tweeeeet");
 		doGet(request, response);
 	}
 

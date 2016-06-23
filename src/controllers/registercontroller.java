@@ -3,7 +3,6 @@ package controllers;
 import java.io.IOException;
 import models.BeanUser;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -48,6 +47,7 @@ public class registercontroller extends HttpServlet {
 		BeanUser user = new BeanUser();
 		BeanUtilities.populateBean(user, request);
 
+		//Fem les comprovacions a la bbdd sobre si l'usuari o email están ja registrats
 		boolean err = false;
 		try {
 			String[] where = { "user", user.getUser() };
@@ -66,8 +66,7 @@ public class registercontroller extends HttpServlet {
 		}
 
 		if (user.isComplete() && dao != null && !err) {
-
-			System.out.println("Fem un insert a la BD");
+			//Insertem l'usuari a la bbdd
 			try {
 				String sSql = "INSERT INTO " + taula
 						+ " (`user`, `mail`, `name`, `surname`, `passwd`, `bday`, `surname2`, `gender`, `description`, `likes`) "
@@ -75,14 +74,14 @@ public class registercontroller extends HttpServlet {
 						+ user.getName() + "\"," + "\"" + user.getSurname() + "\"," + "\"" + user.getPasswd() + "\","
 						+ "\"" + user.getBday() + "\"," + "\"" + user.getSurname2() + "\"," + user.getGender() + ","
 						+ "\"" + user.getDescription() + "\"," + "\"" + user.getLikes() + "\"" + ");";
-				System.out.println(sSql);
 				dao.executeUpdate(sSql);
 
 				sSql = "SELECT id, is_admin, user FROM " + taula + " where mail=\"" +user.getMail()+"\" limit 1;";
 				ResultSet result = dao.executeSQL(sSql);
 
-				HttpSession session = request.getSession();
 
+				//Fem el login
+				HttpSession session = request.getSession();
 				while (result.next()) {
 					session.setAttribute("is_admin", result.getString("is_admin"));
 					session.setAttribute("user", result.getString("user"));
@@ -90,7 +89,7 @@ public class registercontroller extends HttpServlet {
 					session.setAttribute("date", new Date());
 				}
 
-				//Un usuari es segueix a si mateix
+				//Un usuari es segueix a si mateix creem la relació
 				sSql = "INSERT INTO followings "
 						+ " (`id_user`, `id_followed`) "
 						+ "VALUES (" + "\"" + session.getAttribute("user_id") + "\"," + "\"" + session.getAttribute("user_id") + "\");";
@@ -103,7 +102,6 @@ public class registercontroller extends HttpServlet {
 					dispatcher.forward(request, response);
 
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -112,7 +110,6 @@ public class registercontroller extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
 			if (dispatcher != null)
 				dispatcher.forward(request, response);
-
 		}
 	}
 
@@ -122,8 +119,6 @@ public class registercontroller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.print("post fet");
 		doGet(request, response);
 	}
 

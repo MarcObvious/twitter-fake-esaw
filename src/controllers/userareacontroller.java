@@ -2,7 +2,6 @@ package controllers;
 
 import DAO.DAO;
 import models.BeanUser;
-import utils.BeanUtilities;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 /**
@@ -67,12 +65,9 @@ public class userareacontroller extends HttpServlet {
                         user.setDescription(result.getString("description"));
                         user.setLikes(result.getString("likes"));
                     }
-
-
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-
             }
         }
         else {
@@ -98,7 +93,7 @@ public class userareacontroller extends HttpServlet {
                     "description=\"" + request.getParameter("description") + "\",\n" +
                     "likes=\"" + request.getParameter("likes") + "\"\n" +
                     "WHERE id="+  (String) session.getAttribute("user_id") +";";
-            System.out.println(sSql);
+
             try {
                 dao.executeUpdate(sSql);
             } catch (SQLException e) {
@@ -110,7 +105,6 @@ public class userareacontroller extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/userarea1.jsp");
 		if (dispatcher != null)
 			dispatcher.forward(request, response);
-
 	}
 
 	/**
@@ -119,8 +113,6 @@ public class userareacontroller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.print("post fet\n");
 		doGet(request, response);
 	}
 
