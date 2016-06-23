@@ -11,22 +11,25 @@
 
         for(BeanFollow b : list) {
 %>
-<div class="col-xs-6">
+<div class="col-xs-12 col-md-6">
     <div class="panel panel-default">
-
         <div class="panel-body">
-            <strong><%=b.getName()%></strong>  since <%=b.getSince() %>
+            <div class="col-xs-12">
+                <div class="col-xs-9">
+                    User <strong><%=b.getName()%></strong>  since: <cite><%=b.getSince() %></cite>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" title="Unfollow" class="btn btn-danger" id="btnu<%=b.getIdfollowed()%>" > <i class="fa fa-trash" aria-hidden="true"></i></button>
 
-            <button type="button" title="Unfollow" class="btn btn-danger" id="btnu<%=b.getIdfollowed()%>" > <i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <script>
+                        $( "#btnu<%=b.getIdfollowed()%>" ).click(function() {
+                            $('#following').load('followcontroller', { method: "unfollow", id_followed:  <%=b.getIdfollowed()%> });
+                        });
+                    </script>
 
-            <script>
-                $( "#btnu<%=b.getIdfollowed()%>" ).click(function() {
-                    $('#following').load('followcontroller', { method: "unfollow", id_followed:  <%=b.getIdfollowed()%> });
-                });
-            </script>
-
+                </div>
+            </div>
         </div>
-
     </div>
 </div>
 

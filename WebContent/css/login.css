@@ -1,11 +1,18 @@
 @CHARSET "UTF-8";
 
-.login {
-    .error {
-        font: normal 10px arial;
-        padding: 3px;
-        margin: 3px;
-        background-color: #ffc;
-        border: 1px solid #c00;
-    }
+#userlabel {
+    margin-top:10px;
+}
+#passwordlabel {
+    margin-top:20px;
+}
+.userlogin {
+    margin-bottom:10px;
+}
+#password {
+    margin-top:10px;
+}
+
+.btn-login {
+    margin: 20px 20px 20px 20px;
 }

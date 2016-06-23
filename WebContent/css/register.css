@@ -1,11 +1,14 @@
 @CHARSET "UTF-8";
 
-.register {
-    .error {
-        font: normal 10px arial;
-        padding: 3px;
-        margin: 3px;
-        background-color: #ffc;
-        border: 1px solid #c00;
-    }
+.btn-register {
+    margin: 20px 20px 20px 20px;
+}
+
+.register > input {
+    padding-top: 10px;
+}
+
+.hd2-register {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

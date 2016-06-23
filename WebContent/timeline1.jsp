@@ -14,53 +14,56 @@
 
 %>
 
-<div class="col-xs-3">
+<div class="col-xs-12 col-md-6 col-lg-3">
     <div class="panel panel-default">
-        <div class="panel-heading"><%=b.getTitle() %></div>
+        <div class="panel-heading"><strong><%=b.getTitle() %></strong></div>
         <div class="panel-body">
-            <strong><%=b.getUser() %></strong>  wrote at <%=b.getDatetweet() %>:
+            <p>User: <strong><%=b.getUser() %></strong>
+            wrote at <cite><%=b.getDatetweet() %></cite>:</p>
             <p> <%=b.getTweet()%> </p>
 
             <%
                 if (session.getAttribute("user") != null) {
             %>
+            <br>
+            <p class="text-center">
+                <button id="btnr<%=b.getIdtweet()%>" type="button" title="Retweet" class="btn btn-success" > <i class="fa fa-retweet" aria-hidden="true"></i></button>
 
-            <button id="btnr<%=b.getIdtweet()%>" type="button" title="Retweet" class="btn btn-success" > <i class="fa fa-retweet" aria-hidden="true"></i></button>
+                <script>
+                    $( "#btnr<%=b.getIdtweet()%>" ).click(function() {
+                        $('#content').load('tweetcontroller', { method: "retweet", id_tweet:  <%=b.getIdtweet()%>, username: "<%=b.getUser()%>" });
+                    });
+                </script>
 
-            <script>
-                $( "#btnr<%=b.getIdtweet()%>" ).click(function() {
-                    $('#content').load('tweetcontroller', { method: "retweet", id_tweet:  <%=b.getIdtweet()%>, username: "<%=b.getUser()%>" });
-                });
-            </script>
+                <%
+                    }
 
-            <%
-                }
-
-                if (b.getUser().equals(session.getAttribute("user"))) {
-            %>
+                    if (b.getUser().equals(session.getAttribute("user"))) {
+                %>
 
 
-            <button id="btne<%=b.getIdtweet()%>" type="button" title="Edit" class="btn btn-success" > <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                <button id="btne<%=b.getIdtweet()%>" type="button" title="Edit" class="btn btn-success" > <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
-            <script>
-                $( "#btne<%=b.getIdtweet()%>" ).click(function() {
-                    $('#content').load('tweetcontroller', { method: "edittweet", id_tweet:  <%=b.getIdtweet()%> });
-                });
-            </script>
+                <script>
+                    $( "#btne<%=b.getIdtweet()%>" ).click(function() {
+                        $('#content').load('tweetcontroller', { method: "edittweet", id_tweet:  <%=b.getIdtweet()%> });
+                    });
+                </script>
 
-            <%
-                }
+                <%
+                    }
 
-                if (b.getUser().equals(session.getAttribute("user")) || "1".equals(session.getAttribute("is_admin"))) {
-            %>
+                    if (b.getUser().equals(session.getAttribute("user")) || "1".equals(session.getAttribute("is_admin"))) {
+                %>
 
-            <button id="btnd<%=b.getIdtweet()%>" type="button" title="Delete tweet" class="btn btn-danger" > <i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button id="btnd<%=b.getIdtweet()%>" type="button" title="Delete tweet" class="btn btn-danger" > <i class="fa fa-trash" aria-hidden="true"></i></button>
 
-            <script>
-                $( "#btnd<%=b.getIdtweet()%>" ).click(function() {
-                    $('#content').load('timelinecontroller', { method: "deletetweet", id_tweet:  <%=b.getIdtweet()%> });
-                });
-            </script>
+                <script>
+                    $( "#btnd<%=b.getIdtweet()%>" ).click(function() {
+                        $('#content').load('timelinecontroller', { method: "deletetweet", id_tweet:  <%=b.getIdtweet()%> });
+                    });
+                </script>
+            </p>
             <%
                 }
             %>

@@ -1,46 +1,29 @@
+@CHARSET "UTF-8";
+@import "common.css";
+@import "login.css";
+@import "register.css";
+@import "tweet.css";
+@import "timeline.css";
 
 
- .row-fluid {
-      background-color: white;
-  .border-radius(3px);
-
-      margin-top: 0;
-      margin-left: 0;
-      padding: 0;
-  }
-
-.hd2 {
-    margin-bottom: 40px;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
 }
 
-.left-column, .right-column {
+#header .h1-logo{
+    font-weight: bold;
+    font-size:50px;
+
+
+}
+#navigation {
+    font-size: 25px;
+    font-weight: bold;
+
     padding: 0;
-}
-
-p {
-    /* color: @web-color-grey-2;*/
-    font-size: 16px;
-    line-height: 22px;
-    margin-top: 20px;
+    margin: 0 0 0 0;
 }
 
 
-label {
-    display: block;
-    /*  color: @web-color-grey-1;*/
-    font-size: 16px;
-    width: 40%;
-    float:left;
-    line-height: 36px;
-}
-
-input, select, textarea {
-    display: block;
-    float:left;
-    text-align: left;
-    /*  color: @web-color-grey-2;*/
-    font-size: 14px;
-    padding: 0 10px;
-    width: 60%;
-}
-
+.clear { clear: both; background: none; }

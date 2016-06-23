@@ -21,7 +21,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    
+
     <script type="text/javascript">
         $(document).ready(function() {
             $(".menu").click(function(event) {
@@ -32,22 +32,22 @@
 </head>
 
 <body>
-<div id="wrapper">
+<div id="wrapper" class="wrapper">
     <div class="container row-fluid">
         <div class="col-xs-12">
             <div class="col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
-                        <h1>Twitter Fake ESAW</h1>
+                        <h1 class="h1-logo">Twitter Fake ESAW <i class="fa fa-twitter" aria-hidden="true"></i></h1>
                     </div>
                 </div>
             </div>
         </div>
+        <%--NAVIGATOR--%>
         <div class="col-xs-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Menu (posar algo maco)</div>
                 <div class="panel-body">
-                    <div id="navigation">
+                    <div id="navigation" class="navigation">
                         <%
                             if ((String) session.getAttribute("user") != null) {
                         %>
@@ -67,7 +67,7 @@
 
         <div class="col-xs-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Content</div>
+                <div class="panel-heading"><i class="fa fa-twitter" aria-hidden="true"></i></div>
                 <div class="panel-body">
                     <div id="content">
                         <jsp:include page="timeline.jsp" />
@@ -79,11 +79,12 @@
 
         <div class="col-xs-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Footer</div>
+                <div class="panel-heading">Made with love from:</div>
                 <div class="panel-body">
-                    <p>Made with love from:</p>
-                    <h2>Marc Mateu: 146756</h2>
-                    <h2>Ignasi Larroca: 158633</h2>
+                    <div class="text-center">
+                        <h2>Marc Mateu: 146756</h2>
+                        <h2>Ignasi Larroca: 158633</h2>
+                    </div>
                 </div>
             </div>
         </div>

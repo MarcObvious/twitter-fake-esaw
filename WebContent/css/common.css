@@ -1,11 +1,15 @@
 @CHARSET "UTF-8";
 
-.common {
-    .error {
-        font: normal 10px arial;
-        padding: 3px;
-        margin: 3px;
-        background-color: #ffc;
-        border: 1px solid #c00;
-    }
+.error {
+    font: normal 10px arial;
+    padding: 3px;
+    margin: 3px;
+    background-color: #ffc;
+    border: 1px solid #c00;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0;
 }

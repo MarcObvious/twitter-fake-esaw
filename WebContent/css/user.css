@@ -1,11 +1,18 @@
 @CHARSET "UTF-8";
 
-.user {
-    .error {
-        font: normal 10px arial;
-        padding: 3px;
-        margin: 3px;
-        background-color: #ffc;
-        border: 1px solid #c00;
-    }
+.btn-user {
+    margin: 20px 20px 20px 20px;
+}
+
+.user > input {
+    padding-top: 10px;
+}
+
+.hd2-user {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.btns {
+    right: 0;
 }

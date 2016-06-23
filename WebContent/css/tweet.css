@@ -1,4 +1,14 @@
 @CHARSET "UTF-8";
 
-.tweet {
+.btn-tweet {
+    margin: 20px 20px 20px 20px;
+}
+
+.register > input {
+    padding-top: 10px;
+}
+
+.hd2-login {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
