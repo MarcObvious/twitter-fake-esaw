@@ -10,10 +10,8 @@
 </script>
 
 
-<%HttpSession session = request.getSession(false);
-    System.out.println("cargamos menu.jsp");
-  /*  System.out.println("        (menu.jsp)Sesion:"+session);*/
-//System.out.println("Sesion(user):"+session.getAttribute("user"));
+<%
+    HttpSession session = request.getSession(false);
     if ((session != null) && (session.getAttribute("user")!=null)) {
 
 %>
@@ -25,8 +23,13 @@
         <td> <a class="menu" id="userarea.jsp" href=#> User Area <i class="fa fa-user" aria-hidden="true"></i> </a> </td>
     </tr>
 </table>
-<% }
-else {%>
+<%
+}
+
+else {
+
+%>
+
 <table class="table text-center">
     <tr>
         <td> <a class="menu" id="index.jsp" href=#> Home <i class="fa fa-home" aria-hidden="true"></i></a> </td>
@@ -34,4 +37,9 @@ else {%>
         <td> <a class="menu" id="login.jsp" href=#> Login <i class="fa fa-sign-in" aria-hidden="true"></i></a> </td>
     </tr>
 </table>
-<%}; %>
+
+<%
+
+    }
+
+%>

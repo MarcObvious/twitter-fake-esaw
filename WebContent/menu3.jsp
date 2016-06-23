@@ -9,10 +9,10 @@
     });
 </script>
 
-<table>
+<table class="table text-center">
     <tr>
-        <td> <a class="menu" id="index.jsp" href=#> Home </a> </td>
-        <td> <a class="menu" id="register.jsp" href=#> Registration </a> </td>
-        <td> <a class="menu" id="login.jsp" href=#> Login </a> </td>
+        <td> <a class="menu" id="index.jsp" href=#> Home <i class="fa fa-home" aria-hidden="true"></i></a> </td>
+        <td> <a class="menu" id="register.jsp" href=#> Registration <i class="fa fa-user" aria-hidden="true"></i></a> </td>
+        <td> <a class="menu" id="login.jsp" href=#> Login <i class="fa fa-sign-in" aria-hidden="true"></i></a> </td>
     </tr>
 </table>

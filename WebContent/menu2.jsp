@@ -10,7 +10,7 @@
 </script>
 
 
-<table width="100%">
+<table class="table text-center">
     <tr>
         <td> <a class="menu" id="index.jsp" href=#> Home </a> </td>
         <td> <a class="menu" id="logout.jsp" href=#> Logout </a> </td>
