@@ -44,11 +44,46 @@ public class tweetcontroller extends HttpServlet {
 
 		BeanTweet tweet = new BeanTweet();
 		RequestDispatcher dispatcher;
+		HttpSession session = request.getSession(false);
 
 
 		String method = request.getParameter("method");
 
-		if (method != null && method.equals("edittweet")) {
+		if (method != null && method.equals("retweet")) {
+			try {
+
+				String query = "SELECT t.id as id_tweet, t.title, t.tweet, t.private\n" +
+						"FROM "+ taula + " t\n" +
+						"where t.id=\"" + request.getParameter("id_tweet") + "\";";
+
+				ResultSet result = dao.executeSQL(query);
+
+				while (result.next()) {
+					tweet.setIdtweet(result.getInt("id_tweet"));
+					tweet.setTitle(result.getString("title"));
+					tweet.setTweet("RETWEETED from <strong>" + request.getParameter("username") +":</strong> "+ result.getString("tweet"));
+					tweet.setPrivacity(result.getInt("private"));
+				}
+
+				query = "INSERT INTO " + taula +
+						" (`tweet`, `title`, `id_user`, `private`) "+
+						"VALUES (" +
+						"\"" + tweet.getTweet() + "\"," +
+						"\"" + tweet.getTitle() + "\"," +
+						"\"" + (String) session.getAttribute("user_id") + "\"," +
+						"\"" + tweet.getPrivacity() + "\"" + ");";
+
+				dao.executeUpdate(query);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			dispatcher = request.getRequestDispatcher("/index.jsp");
+
+		}
+
+		else if (method != null && method.equals("edittweet")) {
 			String query = "SELECT t.id as id_tweet, t.title, t.tweet, t.private\n" +
 					"FROM "+ taula + " t\n" +
 					"where t.id=\"" + request.getParameter("id_tweet") + "\";";
@@ -73,7 +108,7 @@ public class tweetcontroller extends HttpServlet {
 			BeanUtilities.populateBean(tweet, request);
 
 
-			HttpSession session = request.getSession(false);
+
 			String query = "";
 			if (tweet.getIdtweet() == 0) {
 				query = "INSERT INTO " + taula +

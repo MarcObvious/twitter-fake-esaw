@@ -4,7 +4,6 @@
 
 <head>
 
-	<%--	<script type="text/javascript" src="jquery/jquery-1.7.1.js"></script>--%>
 	<script type="text/javascript" src="jquery/jquery.validate.js"></script>
 	<script>
 		$(document).ready(function(){

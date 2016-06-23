@@ -41,6 +41,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>admincontroller</display-name>
+    <servlet-name>admincontroller</servlet-name>
+    <servlet-class>controllers.admincontroller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>admincontroller</servlet-name>
+    <url-pattern>/admincontroller</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>tweetcontroller</display-name>
     <servlet-name>tweetcontroller</servlet-name>
     <servlet-class>controllers.tweetcontroller</servlet-class>

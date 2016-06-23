@@ -73,11 +73,11 @@ public class followcontroller extends HttpServlet {
             query = "SELECT u.user, u.id AS id_user, f.id_followed, f.date_add AS since\n" +
                     "FROM followings f\n" +
                     "INNER JOIN users u ON f.id_followed=u.id " +
-                    "where f.deleted=0 AND f.id_user=\"" + (String) session.getAttribute("user_id") + "\";";
+                    "where u.deleted=0 AND f.deleted=0 AND f.id_user=\"" + (String) session.getAttribute("user_id") + "\";";
         }
         else if (method.equals("nofollowing"))
             query = "SELECT u.id AS id_user, 0 as id_followed, u.user, u.date_add AS since\n" +
-                    "FROM users u;";
+                    "FROM users u where u.deleted=0;";
 
         if (!query.equals("")){
             try {

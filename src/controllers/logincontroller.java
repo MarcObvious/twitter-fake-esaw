@@ -72,19 +72,19 @@ public class logincontroller extends HttpServlet {
 			HttpSession session = request.getSession();
 
 			try {
-				String query = "select id from users where user=\"" + login.getUser()
+				String query = "select id, is_admin from users where user=\"" + login.getUser()
 						+ "\" and passwd=\"" + login.getPassword() + "\";";
 				ResultSet result = dao.executeSQL(query);
 
 
-				String id = "";
-				while (result.next()) {
-					id = result.getString("id");
 
+				while (result.next()) {
+                    session.setAttribute("is_admin", result.getString("is_admin"));
+                    session.setAttribute("user_id", result.getString("id"));
 				}
 
 				session.setAttribute("user", login.getUser());
-				session.setAttribute("user_id", id);
+
 				session.setAttribute("date", new Date());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

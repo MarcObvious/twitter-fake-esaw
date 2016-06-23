@@ -55,7 +55,7 @@ public class registercontroller extends HttpServlet {
 				user.updateError(0, 1);
 				err = true;
 			}
-			
+
 			String[] where2 = { "mail", user.getMail() };
 			if (dao.exists("users", where2)) {
 				user.updateError(1, 1);
@@ -78,17 +78,19 @@ public class registercontroller extends HttpServlet {
 				System.out.println(sSql);
 				dao.executeUpdate(sSql);
 
-				sSql = "SELECT id, user FROM " + taula + " where mail=\"" +user.getMail()+"\" limit 1;";
+				sSql = "SELECT id, is_admin, user FROM " + taula + " where mail=\"" +user.getMail()+"\" limit 1;";
 				ResultSet result = dao.executeSQL(sSql);
 
 				HttpSession session = request.getSession();
 
 				while (result.next()) {
+					session.setAttribute("is_admin", result.getString("is_admin"));
 					session.setAttribute("user", result.getString("user"));
 					session.setAttribute("user_id", result.getString("id"));
 					session.setAttribute("date", new Date());
 				}
 
+				//Un usuari es segueix a si mateix
 				sSql = "INSERT INTO followings "
 						+ " (`id_user`, `id_followed`) "
 						+ "VALUES (" + "\"" + session.getAttribute("user_id") + "\"," + "\"" + session.getAttribute("user_id") + "\");";
