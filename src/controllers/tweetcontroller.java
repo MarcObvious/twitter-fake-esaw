@@ -1,8 +1,7 @@
 package controllers;
 
 import DAO.DAO;
-import models.BeanNewtweet;
-import models.BeanUser;
+import models.BeanTweet;
 import utils.BeanUtilities;
 
 import javax.servlet.RequestDispatcher;
@@ -13,13 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 /**
  * Servlet implementation class formcontroller
  */
-public class newtweetcontroller extends HttpServlet {
+public class tweetcontroller extends HttpServlet {
 	private String taula = "tweets";
 	private DAO dao = null;
 
@@ -28,7 +26,7 @@ public class newtweetcontroller extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public newtweetcontroller() {
+	public tweetcontroller() {
 		super();
 		try {
 			dao = new DAO();
@@ -44,46 +42,58 @@ public class newtweetcontroller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		BeanNewtweet newtweet = new BeanNewtweet();
+		BeanTweet tweet = new BeanTweet();
 		RequestDispatcher dispatcher;
 
 
 		String method = request.getParameter("method");
 
 		if (method != null && method.equals("edittweet")) {
-			newtweet.setIdtweet(Integer.parseInt(request.getParameter("id_tweet")));
-			newtweet.setTitle(request.getParameter("title"));
-			newtweet.setTweet(request.getParameter("tweet"));
+			String query = "SELECT t.id as id_tweet, t.title, t.tweet, t.private\n" +
+					"FROM "+ taula + " t\n" +
+					"where t.id=\"" + request.getParameter("id_tweet") + "\";";
 
-			request.setAttribute("newtweet",newtweet);
-			dispatcher = request.getRequestDispatcher("/newtweet.jsp");
+			try {
+				ResultSet result = dao.executeSQL(query);
+				while (result.next()) {
+					tweet.setIdtweet(result.getInt("id_tweet"));
+					tweet.setTitle(result.getString("title"));
+					tweet.setTweet(result.getString("tweet"));
+					tweet.setPrivacity(result.getInt("private"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			request.setAttribute("tweet",tweet);
+			dispatcher = request.getRequestDispatcher("/tweet.jsp");
 		}
 		else {
 
-			BeanUtilities.populateBean(newtweet, request);
+			BeanUtilities.populateBean(tweet, request);
 
 
 			HttpSession session = request.getSession(false);
 			String query = "";
-			if (newtweet.getIdtweet() == 0) {
+			if (tweet.getIdtweet() == 0) {
 				query = "INSERT INTO " + taula +
 						" (`tweet`, `title`, `id_user`, `private`) "+
 						"VALUES (" +
-						"\"" + newtweet.getTweet() + "\"," +
-						"\"" + newtweet.getTitle() + "\"," +
+						"\"" + tweet.getTweet() + "\"," +
+						"\"" + tweet.getTitle() + "\"," +
 						"\"" + (String) session.getAttribute("user_id") + "\"," +
-						"\"" + newtweet.getPrivacity() + "\"" + ");";
+						"\"" + tweet.getPrivacity() + "\"" + ");";
 			}
 			else {
 				query = "UPDATE "+ taula +"\n" +
-						"SET tweet=\"" + newtweet.getTweet()  + "\",\n" +
-						"title=\"" + newtweet.getTitle() + "\",\n" +
+						"SET tweet=\"" + tweet.getTweet()  + "\",\n" +
+						"title=\"" + tweet.getTitle() + "\",\n" +
 						"id_user=\"" + (String) session.getAttribute("user_id") + "\",\n" +
-						"private=\"" + newtweet.getPrivacity()  + "\"\n" +
-						"WHERE id="+  newtweet.getIdtweet() +";";
+						"private=\"" + tweet.getPrivacity()  + "\"\n" +
+						"WHERE id="+  tweet.getIdtweet() +";";
 
 			}
-			if ((String) session.getAttribute("user") != null && newtweet.isComplete() && dao != null) {
+			if ((String) session.getAttribute("user") != null && tweet.isComplete() && dao != null) {
 
 				System.out.println(query);
 				try {
@@ -112,7 +122,7 @@ public class newtweetcontroller extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.print("post fet");
+		System.out.print("post fet tweeeeet");
 		doGet(request, response);
 	}
 

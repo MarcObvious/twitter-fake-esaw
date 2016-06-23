@@ -1,6 +1,6 @@
 package models;
 
-public class BeanNewtweet {
+public class BeanTweet {
 
     private String title = "";
     private String tweet = "";
@@ -78,7 +78,7 @@ public class BeanNewtweet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BeanNewtweet that = (BeanNewtweet) o;
+        BeanTweet that = (BeanTweet) o;
 
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (tweet != null ? !tweet.equals(that.tweet) : that.tweet != null) return false;

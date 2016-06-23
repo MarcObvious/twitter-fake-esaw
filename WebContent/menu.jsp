@@ -21,7 +21,7 @@
     <tr>
         <td> <a class="menu" id="/index.jsp" href=#> Home <i class="fa fa-home" aria-hidden="true"></i></a> </td>
         <td> <a class="menu" id="logout.jsp" href=#> Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a> </td>
-        <td> <a class="menu" id="newtweet.jsp" href=#> New Tweet <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> </td>
+        <td> <a class="menu" id="tweet.jsp" href=#> New Tweet <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> </td>
         <td> <a class="menu" id="userarea.jsp" href=#> User Area <i class="fa fa-user" aria-hidden="true"></i> </a> </td>
     </tr>
 </table>

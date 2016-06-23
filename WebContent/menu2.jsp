@@ -14,7 +14,7 @@
     <tr>
         <td> <a class="menu" id="index.jsp" href=#> Home </a> </td>
         <td> <a class="menu" id="logout.jsp" href=#> Logout </a> </td>
-        <td> <a class="menu" id="newtweet.jsp" href=#> New Tweet </a> </td>
+        <td> <a class="menu" id="tweet.jsp" href=#> New Tweet </a> </td>
         <td> <a class="menu" id="userarea.jsp" href=#> User Area</a> </td>
     </tr>
 </table>	

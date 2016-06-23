@@ -1,4 +1,4 @@
-<%@ page import="models.BeanNewtweet" %>
+<%@ page import="models.BeanTweet" %>
 <%@ page import="java.util.ArrayList" %>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -9,8 +9,8 @@
 <%
     if (request.getAttribute("timeline") != null) {
 
-        ArrayList<BeanNewtweet> list = (ArrayList<BeanNewtweet>) request.getAttribute("timeline");
-        for(BeanNewtweet b : list) {
+        ArrayList<BeanTweet> list = (ArrayList<BeanTweet>) request.getAttribute("timeline");
+        for(BeanTweet b : list) {
 
 %>
 
@@ -31,7 +31,7 @@
 
             <script>
                 $( "#btne<%=b.getIdtweet()%>" ).click(function() {
-                    $('#content').load('newtweetcontroller', { method: "edittweet", id_tweet:  <%=b.getIdtweet()%>, title: "<%=b.getTitle() %>", tweet: "<%=b.getTweet()%>" });
+                    $('#content').load('tweetcontroller', { method: "edittweet", id_tweet:  <%=b.getIdtweet()%> });
                 });
             </script>
 

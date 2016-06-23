@@ -41,13 +41,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>newtweetcontroller</display-name>
-    <servlet-name>newtweetcontroller</servlet-name>
-    <servlet-class>controllers.newtweetcontroller</servlet-class>
+    <display-name>tweetcontroller</display-name>
+    <servlet-name>tweetcontroller</servlet-name>
+    <servlet-class>controllers.tweetcontroller</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>newtweetcontroller</servlet-name>
-    <url-pattern>/newtweetcontroller</url-pattern>
+    <servlet-name>tweetcontroller</servlet-name>
+    <url-pattern>/tweetcontroller</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
